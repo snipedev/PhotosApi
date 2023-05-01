@@ -20,11 +20,11 @@ namespace PhotosApi.Controllers
         [HttpGet("{Tag}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetPhotos(string Tag)
+        public async Task<IActionResult> GetPhotos(string Tag,int page = 1,int perPage = 100)
         {
             try
             {
-                var photos = await _flickerService.GetPhotos(Tag);
+                var photos = await _flickerService.GetPhotos(Tag,page,perPage);
                 return Ok(photos);
             }
             catch (EmptyKeyException ex)
